@@ -1,3 +1,5 @@
+@import url(fontawesome-all.min.css);
+
 html, body, div, span, applet, object,
 iframe, h1, h2, h3, h4, h5, h6, p, blockquote,
 pre, a, abbr, acronym, address, big, cite,
@@ -85,7 +87,7 @@ body {
 /* Type */
 body, input, select, textarea {
   color: #000000;
-  font-family: "Helvetica", sans-serif;
+  font-family: "Helvetica Neue", Helvetica, STHeiti, sans-serif;
   font-size: 13pt;
   font-weight: 400;
   line-height: 1.65; }
@@ -127,7 +129,7 @@ p {
 
 h1, h2, h3, h4, h5, h6 {
   color: #000000;
-  font-family: "Helvetica", sans-serif;
+  font-family: "Helvetica Neue", Helvetica, sans-serif;
   font-weight: 700;
   line-height: 1.5;
   margin: 0 0 1em 0; }
@@ -238,14 +240,24 @@ ul.navbar li {
   margin: 0px 20px;
   /* our font-size will be 3% of the height of the viewport */
   font-size: 1.5em;
-  font-weight: 500;
 }
 
+/* ul.navbar li:first-child{padding-right: 50vw;}
+
+@media screen and (max-width: 720px) {
+  ul.navbar li{
+    font-size: 1.2em;
+  }
+  ul.navbar li:first-child{padding-right: 20vw;}
+}
+
+*/
+
+/*
 ul.navbar a {
   font-weight: 500;
 }
-
-ul.navbar li:first-child{padding-right: 50vw;}
+*/
 
 .logo {
   width: 100px;
@@ -270,18 +282,25 @@ ul.navbar li:first-child{padding-right: 50vw;}
   width: 80%;
 }
 
-li a {
-  -moz-transition: color 0.2s ease-in-out, border-bottom-color 0.2s ease-in-out;
-  -webkit-transition: color 0.2s ease-in-out, border-bottom-color 0.2s ease-in-out;
-  -ms-transition: color 0.2s ease-in-out, border-bottom-color 0.2s ease-in-out;
-  transition: color 0.2s ease-in-out, border-bottom-color 0.2s ease-in-out;
+.title {
+  margin-left: 20px;
+  font-size: 3em;
+  font-weight: 800;
+  line-height: 100%;
+  width: 80%;
+}
+
+ul.navbar li a {
+  -moz-transition: color 0.2s ease-in-out, background-color 0.2s ease-in-out;
+  -webkit-transition: color 0.2s ease-in-out, background-color 0.2s ease-in-out;
+  -ms-transition: color 0.2s ease-in-out, background-color 0.2s ease-in-out;
+  transition: color 0.2s ease-in-out, background-color 0.2s ease-in-out;
   color: #000000;
-  text-decoration: none; }
-  li a:hover {
-    border-bottom-color: #000000;
+  text-decoration: none;}
+  ul.navbar li a:hover {
     background-color: #000000;
     color: #ffffff !important; }
-    li a:hover strong {
+    ul.navbar li a:hover strong {
       color: inherit; }
 
 .text a {
@@ -301,3 +320,113 @@ li a {
   background-color: #000000;
   color: #ffffff;
 }
+
+.footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: #ffffff;
+  color: #000000;
+  text-align: center;
+  font-size: 1.5em;
+}
+
+.footer ul {
+  margin: 0;
+  padding: 0;
+  display: flex;
+}
+
+/*
+.footer a {
+  color: #000000 !important;
+  text-decoration: underline;
+}
+  .footer a:hover {
+    border-bottom-color: #000000;
+    color: #ff0000 !important; }
+    .footer a:hover strong {
+      color: inherit; }
+      */
+
+ul.footer {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
+
+ul.footer li {
+  float: left;
+  padding: 0px 20px;
+}
+
+ul.footer li a {
+  display: inline-block;
+  text-align: center;
+  padding: 0px 0px;
+  color: #000000;
+  text-decoration: underline;
+  -moz-transition: color 0.2s ease-in-out, border-bottom-color 0.2s ease-in-out;
+  -webkit-transition: color 0.2s ease-in-out, border-bottom-color 0.2s ease-in-out;
+  -ms-transition: color 0.2s ease-in-out, border-bottom-color 0.2s ease-in-out;
+  transition: color 0.2s ease-in-out, border-bottom-color 0.2s ease-in-out;
+}
+  ul.footer li a:hover {
+    border-bottom-color: #000000;
+    color: #ff0000 !important; }
+    ul.footer li a:hover strong {
+      color: inherit; }
+
+.image {
+  font-size: 1.5em;
+  margin-left: 20px;
+  width: 80%;
+  opacity: 0;
+  -moz-transition: opacity 0.5s ease-in-out;
+  -webkit-transition: opacity 0.5s ease-in-out;
+  -ms-transition: opacity 0.5s ease-in-out;
+  transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+}
+
+.image:hover {
+  opacity: 1;
+  /* transform: translate(200px,0); */
+}
+
+.flip{
+  display: inline-block; 
+  transition: transform 0.5s ease-in-out;
+}
+
+.flip:hover{
+  transform: scale(-1, 1);
+}
+
+/*
+ul.blog {
+  display: inline-block;
+}
+*/
+
+ul.blog li {
+  list-style-type: none;  
+  margin: 5px 0;
+  /* our font-size will be 3% of the height of the viewport */
+}
+
+ul.blog li a {
+  -moz-transition: color 0.2s ease-in-out, background-color 0.2s ease-in-out;
+  -webkit-transition: color 0.2s ease-in-out, background-color 0.2s ease-in-out;
+  -ms-transition: color 0.2s ease-in-out, background-color 0.2s ease-in-out;
+  transition: color 0.2s ease-in-out, background-color 0.2s ease-in-out;
+  color: #000000;
+  text-decoration: none;}
+  ul.blog li a:hover {
+    color: #ff0000 !important; }
+    ul.blog li a:hover strong {
+      color: inherit; }

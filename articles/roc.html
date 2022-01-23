@@ -1,0 +1,92 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>Zehao Su</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="../assets/css/main.css" />
+		<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
+</script>
+<script type="text/javascript"
+  src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+	</head>
+	<body>
+		<!-- Side navigation -->
+    <div class="sidenav">
+        <a href="../index.html">Home</a>
+        <a href="../about.html">About</a>
+        <a class="active" href="../blog.html">Blog</a>
+        <a href="../files/CV.pdf" target="_blank">CV</a>
+        <a href="../faq.html">FAQ</a>
+        <a href="../blog_zh.html">中文</a>
+    </div>
+
+    <!-- Page content -->
+    <div class="main">
+      <p class="vertical-1cm"></p>
+      <div class="text">
+			<h4>Optimal cutoff point from ROC curve</h4>
+			Suppose we are devising a screening test for some disease $ D\in\{0,1\}$. Continuous measurements from patients $ Y $'s are obtained, and patients are deemed "positive" (or at "high risk") if $ Y \geq t $ for some threshold $ t $.
+
+Let $ T(t) $ and $ F(t) $ be the true positive rate (sensitivity) and false positive rate (1 - specificity) at threshold level $ t $, respectively. The area under curve (AUC) of the receiver operating characteristic (ROC) curve is defined as
+
+$$
+  \mathrm{AUC}=\int_{0}^{1}T(F)\mathrm{d}F.
+$$
+
+We can write $T$ as a function of $ F $. This is possible because $ F(t) $ is monotone increasing with respect to $ t $. Furthermore, assume that $ F(t)=\mathbb{P}(Y\geq t\vert D=0) $ has derivative $ f(t) \geq 0 $. Then the AUC can be computed as
+
+  \begin{align*}
+  \mathrm{AUC} &= \int_{0}^{1}T(F)\mathrm{d}F \\
+  &= \int_{0}^{1}\mathbb{P}(Y\geq t|D=1)\mathrm{d}\mathbb{P}(Y\geq t|D=0) \\
+  &= \int_{\mathcal{T}}T(t)|f(t)|\mathrm{d}t \\
+  &= \mathbb{P}(Y_{D}>Y_{\bar{D}}|\mathcal{D}).
+  \end{align*}
+
+Given the true disease status $ \mathcal{D} $, AUC is the probability that the test result $ Y_{D} $ from a randomly selected case is larger than the test result $ Y_{\bar{D}} $ from a randomly selected control.
+
+This is a nice interpretation, huh! It makes sense because if $ Y_{D} $ and $ Y_{\bar{D}} $ can be easily told apart, the screening test will likely be quite effective.
+
+Now what if we'd like to choose a cutpoint from all the possible values? Should we always choose the point closest to the upper left corner?
+
+The short answer is no. It depends on the disease prevalence $ \pi $ and the cost for false positives $ c_{+} $ and false negatives $ c_{-} $. Naturally, for a disease status $ d $ and action $ a\in\{0,1\} $, we have a loss function $ L(d,a) $ defined as
+
+\[
+  \begin{array}{ll}
+  L(0,0)=1, & L(0,1)=c_{+}, \\
+  L(1,0)=c_{-}, & L(1,1)=0.
+  \end{array}
+  \]
+
+As a decision rule with threshold value $t$, we define $ m_{t}(Y):=1\{Y\geq t\}$. The risks for different disease status are
+
+\[
+\begin{array}{l}
+  R(0,m_{t}) = \mathbb{E}_{D=0}L(0,m_{t}(Y)) = \mathbb{P}(Y\geq t|D=0)c_{+} = F(t)c_{+},\\
+  R(1,m_{t}) = \mathbb{E}_{D=1}L(1,m_{t}(Y)) = \mathbb{P}(Y< t|D=1)c_{+} = (1-T(t))c_{-}.
+  \end{array}
+  \]
+
+With prior distribution $ \mathbb{P}(D=d)=\pi^{d}(1-\pi)^{1-d}$, the Bayes risk for $m_{t}$ is
+
+\[
+  r_{\pi}(m_{t}) = \pi c_{-}(1-T(t)) + (1-\pi)c_{+}F(t).
+\]
+
+To find a point on the ROC curve that minimises the expression, we set the derivative with respect to $F$ to zero, hence
+
+\[
+  \frac{\partial T}{\partial F}=\frac{1-\pi}{\pi}\frac{c_{+}}{c_{-}}.
+\]
+
+That is, the optimal point is such whose tangent line has the slope above.
+		  </div>
+      <p class="vertical-1cm"></p>
+    </div>
+    <div class="back">
+          <a href="../blog.html">↩︎ Back</a>
+      </div>
+	</body>
+</html>

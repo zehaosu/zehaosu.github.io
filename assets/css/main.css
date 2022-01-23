@@ -1,5 +1,10 @@
 @import url(fontawesome-all.min.css);
 
+@font-face {
+  font-family: 'huninn';
+  src: url('../webfonts/jf-openhuninn-1.1.ttf') format("truetype");
+}
+
 html, body, div, span, applet, object,
 iframe, h1, h2, h3, h4, h5, h6, p, blockquote,
 pre, a, abbr, acronym, address, big, cite,
@@ -87,7 +92,8 @@ body {
 /* Type */
 body, input, select, textarea {
   color: #000000;
-  font-family: "Helvetica Neue", Helvetica, STHeiti, sans-serif;
+  /* font-family: "Helvetica Neue", Helvetica, STHeiti, sans-serif; */
+  font-family: "Helvetica",  "Heiti SC", sans-serif;
   font-size: 13pt;
   font-weight: 400;
   line-height: 1.65; }
@@ -125,7 +131,7 @@ em, i {
   font-style: italic; }
 
 p {
-  margin: 0 0 2em 0; }
+  margin: 0 0 10px 0; }
 
 h1, h2, h3, h4, h5, h6 {
   color: #000000;
@@ -236,7 +242,7 @@ ul.navbar {
 }
 
 ul.navbar li {
-  list-style-type: none;  
+  list-style-type: none;
   margin: 0px 20px;
   /* our font-size will be 3% of the height of the viewport */
   font-size: 1.5em;
@@ -277,17 +283,28 @@ ul.navbar a {
 
 .text {
   margin-left: 20px;
-  font-size: 1.5em;
+  font-size: 16px;
   line-height: 100%;
-  width: 80%;
+  width: 95%;
+  padding: 0px 20px;
+  border-left: solid #ff0000;
 }
 
 .title {
   margin-left: 20px;
-  font-size: 3em;
+  font-size: 4em;
   font-weight: 800;
   line-height: 100%;
   width: 80%;
+}
+
+.hollow {
+  color: black;
+  -webkit-text-fill-color: white;
+  -moz-text-fill-color: white;
+  -ms-text-fill-color: white; /* Will override color (regardless of order) */
+  -webkit-text-stroke-width: 1.2px;
+  -webkit-text-stroke-color: black;
 }
 
 ul.navbar li a {
@@ -329,7 +346,7 @@ ul.navbar li a {
   background-color: #ffffff;
   color: #000000;
   text-align: center;
-  font-size: 1.5em;
+  font-size: 16px;
 }
 
 .footer ul {
@@ -399,7 +416,7 @@ ul.footer li a {
 }
 
 .flip{
-  display: inline-block; 
+  display: inline-block;
   transition: transform 0.5s ease-in-out;
 }
 
@@ -411,22 +428,206 @@ ul.footer li a {
 ul.blog {
   display: inline-block;
 }
+
+ul.blog:hover {
+  margin: -10px 0;
+}
 */
 
 ul.blog li {
-  list-style-type: none;  
+  list-style-type: none;
   margin: 5px 0;
-  /* our font-size will be 3% of the height of the viewport */
 }
 
+/*
+ul.blog li:hover {
+  margin: 15px 0;
+}
+*/
+
 ul.blog li a {
+  display:inline-block;
+  float: top;
+  -moz-transition: color 0.2s ease-in-out;
+  -webkit-transition: color 0.2s ease-in-out;
+  -ms-transition: color 0.2s ease-in-out;
+  transition: color 0.2s ease-in-out;
+  color: #000000;
+  padding-bottom: 5px;
+  text-decoration: none;}
+  ul.blog li a:hover {
+    color: #ff0000 !important;
+    text-decoration: underline;}
+    ul.blog li a:hover strong {
+      color: inherit;}
+  ul.blog li a:active {
+    color: #ff0000 !important;}
+
+.marquee {
+  position: relative;
+  width: 100vw;
+  max-width: 100%;
+  height: 200px;
+  overflow-x: hidden;
+}
+
+.track {
+  position: absolute;
+  white-space: nowrap;
+  will-change: transform;
+  -webkit-animation: marquee 50s linear infinite;
+  animation: marquee 50s linear infinite;
+}
+
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+.sidenav {
+  width: 130px;
+  position: fixed;
+  z-index: 1;
+  top: 20px;
+  left: 10px;
+  /*
+  background: #eee;
+  */
+  overflow-x: hidden;
+  padding: 8px 0;
+  margin-left: 100px;
+  margin-right: 20px;
+}
+
+.sidenav a {
   -moz-transition: color 0.2s ease-in-out, background-color 0.2s ease-in-out;
   -webkit-transition: color 0.2s ease-in-out, background-color 0.2s ease-in-out;
   -ms-transition: color 0.2s ease-in-out, background-color 0.2s ease-in-out;
   transition: color 0.2s ease-in-out, background-color 0.2s ease-in-out;
   color: #000000;
-  text-decoration: none;}
-  ul.blog li a:hover {
+  text-decoration: none;
+  font-size: 16px;
+  padding: 0px 8px 0px 10px;
+  text-decoration: none;
+  /*
+  color: #2196F3;
+  */
+  display: block;
+  text-align: right;
+}
+
+.sidenav a:hover {
     color: #ff0000 !important; }
-    ul.blog li a:hover strong {
-      color: inherit; }
+    .sidebar a:hover strong {
+      color: inherit; 
+}
+
+.sidenav>.active:before {
+    content:"● ";
+    font-weight: bold;
+    color:red;
+}
+
+.sidenav>.active {
+}
+
+.main {
+  margin-left: 240px; /* Same width as the sidebar + left position in px */
+  margin-right: 140px;
+  padding: 0px 10px;
+}
+
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
+}
+
+/* Add a black background color to the top navigation */
+.bottomnav {
+  overflow: hidden;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  color: white;
+  text-align: center;
+  margin-left: 260px; /* Same width as the sidebar + left position in px */
+  margin-right: 140px;
+}
+
+/* Style the links inside the navigation bar */
+.bottomnav a {
+  -moz-transition: color 0.2s ease-in-out, background-color 0.2s ease-in-out;
+  -webkit-transition: color 0.2s ease-in-out, background-color 0.2s ease-in-out;
+  -ms-transition: color 0.2s ease-in-out, background-color 0.2s ease-in-out;
+  transition: color 0.2s ease-in-out, background-color 0.2s ease-in-out;
+  color: #000000;
+  text-decoration: none;
+  font-size: 16px;
+  padding: 0px 8px 0px 10px;
+  text-decoration: none;
+  /*
+  color: #2196F3;
+  */
+  float: left;
+  display: block;
+}
+
+/* Change the color of links on hover */
+.bottomnav a:hover {
+  color: #ff0000;
+}
+
+/* Add a black background color to the top navigation */
+.back {
+  overflow: hidden;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 130px;
+  color: white;
+  margin-left: 100px;
+  margin-right: 20px;
+  margin-bottom: 20px;
+}
+
+/* Style the links inside the navigation bar */
+.back a {
+  -moz-transition: color 0.2s ease-in-out, background-color 0.2s ease-in-out;
+  -webkit-transition: color 0.2s ease-in-out, background-color 0.2s ease-in-out;
+  -ms-transition: color 0.2s ease-in-out, background-color 0.2s ease-in-out;
+  transition: color 0.2s ease-in-out, background-color 0.2s ease-in-out;
+  color: #000000;
+  text-decoration: none;
+  font-size: 16px;
+  padding: 0px 8px 0px 10px;
+  text-decoration: none;
+  text-align: right;
+  /*
+  color: #2196F3;
+  */
+  float: right;
+  display: block;
+}
+
+/* Change the color of links on hover */
+.back a:hover {
+  color: #ff0000;
+}
+
+hr.vertical {
+  width: 0px;
+  height: 100%;
+  /* or height in PX */
+  float:left;
+}
+
+div.vertical-20px {
+  height: 20px;
+  display: block;
+}
+
+div.vertical-40px {
+  height: 40px;
+  display: block;
+}
